@@ -143,7 +143,7 @@
 	{#if removedTaskData.length > 0}
 		<button
 			class="rounded border-2 bg-blue-400 px-5 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-600"
-			on:click={restoredRemovedTasks}>Restore lists</button
+			on:click={restoredRemovedTasks}>Restore list</button
 		>
 	{/if}
 </div>
