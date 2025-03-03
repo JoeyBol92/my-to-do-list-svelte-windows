@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 
 	let taskData = [];
+	let removedTaskData = [];
 
 	// Load tasks from localStorage when the component mounts
 	onMount(() => {
@@ -47,8 +48,15 @@
 	};
 
 	const deleteToDoList = () => {
+		removedTaskData = [...taskData];
 		taskData = [];
-		localStorage.clear();
+		localStorage.setItem('data', JSON.stringify(taskData));
+	};
+
+	const restoredRemovedTasks = () => {
+		taskData = [...removedTaskData];
+		removedTaskData = [];
+		localStorage.setItem('data', JSON.stringify(taskData));
 	};
 </script>
 
@@ -64,13 +72,13 @@
 	<form on:submit={addTask}>
 		<div>
 			<input
-				class="mr-2 h-[35px] rounded border px-5"
+				class="mr-2 h-[35px] rounded border border-[#ccc] px-5 max-md:mb-2"
 				type="text"
 				placeholder="Add a new task"
 				id="todo-input"
 			/>
 			<input
-				class="mr-2 h-[35px] rounded border px-5"
+				class="mr-2 h-[35px] rounded border border-[#ccc] px-5 max-md:mb-2"
 				type="text"
 				placeholder="Add a label"
 				id="label-input"
@@ -85,7 +93,7 @@
 		</div>
 		<div>
 			<button
-				class="bg-checkmark-purple mt-2 h-[35px] rounded border-2 px-4 font-bold text-white hover:cursor-pointer hover:bg-blue-700"
+				class="bg-checkmark-purple mt-2 h-[35px] rounded border-2 px-5 text-sm font-bold text-white hover:cursor-pointer hover:bg-blue-700"
 				type="submit">Add</button
 			>
 		</div>
@@ -127,7 +135,15 @@
 	</ul>
 </div>
 
-<button
-	class="rounded border-2 bg-red-600 px-5 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-red-700"
-	on:click={deleteToDoList}>Clear all items</button
->
+<div class="flex gap-x-4">
+	<button
+		class="rounded border-2 bg-[#ff0000] px-5 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-red-700"
+		on:click={deleteToDoList}>Clear all items</button
+	>
+	{#if removedTaskData.length > 0}
+		<button
+			class="rounded border-2 bg-blue-400 px-5 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-600"
+			on:click={restoredRemovedTasks}>Restore lists</button
+		>
+	{/if}
+</div>

@@ -1,9 +1,8 @@
 {
 	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
 	"productName": "MytodoList",
-	"version": "0.1.0",
+	"version": "2.1.0",
 	"identifier": "jojobee.nl.todolist",
-	"publisher": "jojobee.nl",
 	"build": {
 		"frontendDist": "../build",
 		"devUrl": "http://localhost:5173",
@@ -18,16 +17,8 @@
 				"height": 600,
 				"resizable": true,
 				"fullscreen": false
-			},
+			}
 		],
-    "nsis": {
-      "display_name": "YourApp",
-      "welcome_message": "Welcome to YourApp Installer",
-      "installer_icon": "icons/app-icon.ico",
-      "uninstall_icon": "icons/app-icon.ico",
-      "allow_downgrades": false,
-      "arguments": ""
-    }
 		"security": {
 			"csp": null
 		}
