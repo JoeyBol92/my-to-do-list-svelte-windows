@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-checkmark-purple: #6366f1;
+	--font-Nunito-Sans: 'Nunito Sans', sans-serif;
+	--font-Nunito: 'Nunito', sans-serif;
+}
